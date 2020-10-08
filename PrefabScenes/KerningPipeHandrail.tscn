@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/3D Models/kerning_small_pipe_2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/3D Models/kerning_small_pipe_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/3D Models/kerning_small_pipe_3.tscn" type="PackedScene" id=3]
+
+[node name="Pipe Handrail" type="Spatial"]
+
+[node name="kerning_small_pipe_1" type="Spatial" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.476806, 7 )
+
+[node name="kerning_small_pipe_2" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -2.59968, 2.84908, 7 )
+
+[node name="kerning_small_pipe_3" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.57997, 2.84908, 7 )
+
+[node name="kerning_small_pipe_5" type="Spatial" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.15125, 0.476806, 7 )
+
+[node name="kerning_small_pipe_6" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 7.73122, 2.84908, 7 )
+
+[node name="kerning_small_pipe_7" type="Spatial" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10.2984, 0.476806, 7 )
+
+[node name="kerning_small_pipe_8" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 12.8784, 2.84908, 7 )
+
+[node name="kerning_small_pipe_9" type="Spatial" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 15.4301, 0.476806, 7 )
+
+[node name="kerning_small_pipe_10" type="Spatial" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 18.0101, 2.84908, 7 )
+
+[node name="kerning_small_pipe_4" type="Spatial" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -5.07603, 0.484207, 7 )
+
+[node name="kerning_small_pipe_11" type="Spatial" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 20.474, 0.484207, 7 )

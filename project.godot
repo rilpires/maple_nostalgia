@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="MapleNostalgia"
 run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://project_icon.png"
 
 [display]
 
