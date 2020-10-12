@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Resources/Textures/bricks.png" type="Texture" id=1]
 [ext_resource path="res://Resources/3D Models/kerning_pipe.tscn" type="PackedScene" id=2]
@@ -10,20 +10,26 @@
 [ext_resource path="res://Resources/3D Models/kerning_small_pipe_2.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Resources/Textures/KerningBricks2NormalMap.png" type="Texture" id=9]
 [ext_resource path="res://Resources/3D Models/kerning_big_pipe_1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Resources/3D Models/kern_telephone_inherited.tscn" type="PackedScene" id=11]
 
-[sub_resource type="Environment" id=13]
+[sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.301961, 0.313726, 0.576471, 1 )
+ssao_radius = 24.89
+ssao_intensity = 36.17
+ssao_radius2 = 0.21
+ssao_intensity2 = 53.04
+ssao_color = Color( 0.333333, 0.156863, 0.827451, 1 )
 
-[sub_resource type="SpatialMaterial" id=1]
+[sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 1 )
 uv1_scale = Vector3( 10, 3, 1 )
 uv1_triplanar_sharpness = 0.0110485
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
 size = Vector3( 60, 20, 20 )
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 15, 10, 5 )
 
 [sub_resource type="CubeMesh" id=5]
@@ -33,11 +39,11 @@ size = Vector3( 58, 1, 22 )
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 16, 0.5, 5.5 )
 
-[sub_resource type="CubeMesh" id=12]
+[sub_resource type="CubeMesh" id=7]
 material = ExtResource( 7 )
 size = Vector3( 120, 1, 22 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=8]
 albedo_texture = ExtResource( 1 )
 emission_enabled = true
 emission = Color( 0.313726, 0.192157, 0.192157, 1 )
@@ -48,11 +54,11 @@ uv1_scale = Vector3( 1, 2, 1 )
 uv1_triplanar_sharpness = 0.0110485
 uv2_scale = Vector3( 5, 5, 1 )
 
-[sub_resource type="CubeMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="CubeMesh" id=9]
+material = SubResource( 8 )
 size = Vector3( 5, 1, 14 )
 
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=10]
 albedo_texture = ExtResource( 1 )
 normal_enabled = true
 normal_scale = -0.85
@@ -60,160 +66,167 @@ normal_texture = ExtResource( 9 )
 uv1_scale = Vector3( 30, 10, 1 )
 uv1_triplanar_sharpness = 0.0110485
 
-[sub_resource type="CubeMesh" id=10]
-material = SubResource( 9 )
+[sub_resource type="CubeMesh" id=11]
+material = SubResource( 10 )
 size = Vector3( 120, 60, 2 )
 
-[sub_resource type="BoxShape" id=11]
+[sub_resource type="BoxShape" id=12]
 extents = Vector3( 15, 15, 1 )
 
 [node name="Spatial" type="Spatial"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 13 )
+environment = SubResource( 1 )
 
-[node name="Floor" type="StaticBody" parent="."]
+[node name="Geometry" type="Spatial" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor"]
+[node name="Floor" type="StaticBody" parent="Geometry"]
+
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -2 )
-mesh = SubResource( 2 )
+mesh = SubResource( 3 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -2 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
-[node name="Floor2" type="StaticBody" parent="."]
+[node name="Floor2" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor2"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Floor2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -6, -2 )
 mesh = SubResource( 5 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor2"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
 shape = SubResource( 6 )
 
-[node name="Floor3" type="StaticBody" parent="."]
+[node name="Floor3" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 9, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor3"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Floor3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -6, -2 )
 mesh = SubResource( 5 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor3"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
 shape = SubResource( 6 )
 
-[node name="Floor4" type="StaticBody" parent="."]
+[node name="Floor4" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, -13 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Floor4"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Floor4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
-mesh = SubResource( 12 )
+mesh = SubResource( 7 )
 material/0 = ExtResource( 7 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Floor4"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor4"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
 shape = SubResource( 6 )
 
-[node name="Stair" type="StaticBody" parent="."]
+[node name="Stair" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Stair"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Stair"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -5, 2 )
-mesh = SubResource( 8 )
+mesh = SubResource( 9 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Stair"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Stair"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
 shape = SubResource( 6 )
 
-[node name="Stair2" type="StaticBody" parent="."]
+[node name="Stair2" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 7, 0 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Stair2"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Stair2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -5, 2 )
-mesh = SubResource( 8 )
+mesh = SubResource( 9 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Stair2"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Stair2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
 shape = SubResource( 6 )
 
-[node name="Wall" type="StaticBody" parent="."]
+[node name="Wall" type="StaticBody" parent="Geometry"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Wall"]
+[node name="MeshInstance" type="MeshInstance" parent="Geometry/Wall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 4 )
-mesh = SubResource( 10 )
+mesh = SubResource( 11 )
 material/0 = null
 
-[node name="CollisionShape" type="CollisionShape" parent="Wall"]
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Wall"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 4 )
-shape = SubResource( 11 )
+shape = SubResource( 12 )
 
-[node name="kerning_pipe" parent="." instance=ExtResource( 2 )]
+[node name="Objects" type="Spatial" parent="."]
+
+[node name="kerning_parking_bar" parent="Objects" instance=ExtResource( 3 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -12, 0, 1 )
+
+[node name="Pipe Handrail" parent="Objects" instance=ExtResource( 5 )]
+
+[node name="Pipe Ladder" type="Spatial" parent="Objects"]
+transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 21, 43, -9 )
+
+[node name="kerning_small_pipe_3" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83074, 5, 0 )
+
+[node name="kerning_small_pipe_4" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6681, 5, 0 )
+
+[node name="kerning_small_pipe_5" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4989, 5, 0 )
+
+[node name="kerning_small_pipe_6" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3174, 5, 0 )
+
+[node name="kerning_small_pipe_7" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1481, 5, 0 )
+
+[node name="kerning_small_pipe_8" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9855, 5, 0 )
+
+[node name="kerning_small_pipe_9" parent="Objects/Pipe Ladder" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8163, 5, 0 )
+
+[node name="kerning_small_pipe_10" parent="Objects/Pipe Ladder" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, -8.35187e-23, 0, 1, 0, -8.35187e-23, 0, 1, 4.14856, 0.274838, 0 )
+
+[node name="kerning_small_pipe_11" parent="Objects/Pipe Ladder" instance=ExtResource( 6 )]
+transform = Transform( -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 10.1486, -2.72516, 0 )
+
+[node name="kern_telephone" parent="Objects" instance=ExtResource( 11 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -41, 2, 0 )
+
+[node name="KerningPipeSideline" parent="Objects" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.407, 0, 0, 7 )
+
+[node name="kerning_big_pipe_1" parent="Objects" instance=ExtResource( 10 )]
+transform = Transform( -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -49, 9, 0 )
+
+[node name="kerning_big_pipe_2" parent="Objects" instance=ExtResource( 10 )]
+transform = Transform( -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -29, 41, -20 )
+
+[node name="kerning_big_pipe_3" parent="Objects" instance=ExtResource( 10 )]
+transform = Transform( -2.18557e-07, -5, 0, -4.82963, 2.1111e-07, -1.2941, 1.2941, -5.65667e-08, -4.82963, -29, 41, -9 )
+
+[node name="kerning_big_pipe_4" parent="Objects" instance=ExtResource( 10 )]
+transform = Transform( -2.18557e-07, -5, 0, -2.5, 1.09278e-07, -4.33013, 4.33013, -1.89276e-07, -2.5, -29, 49.4903, -14.6299 )
+
+[node name="kerning_pipe" parent="Objects" instance=ExtResource( 2 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 10, -3 )
 
-[node name="kerning_pipe2" parent="." instance=ExtResource( 2 )]
+[node name="kerning_pipe2" parent="Objects" instance=ExtResource( 2 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -9, 10, -3 )
 
-[node name="kerning_pipe3" parent="." instance=ExtResource( 2 )]
+[node name="kerning_pipe3" parent="Objects" instance=ExtResource( 2 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 10, -3 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 21.01, 24 )
 shadow_enabled = true
-
-[node name="kerning_parking_bar" parent="." instance=ExtResource( 3 )]
-transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -12, 0, 1 )
-
-[node name="Pipe Handrail" parent="." instance=ExtResource( 5 )]
-
-[node name="Pipe Ladder" type="Spatial" parent="."]
-transform = Transform( -4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.37114e-08, 1, 1.91069e-15, 21, 43, -9 )
-
-[node name="kerning_small_pipe_3" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83074, 5, 0 )
-
-[node name="kerning_small_pipe_4" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6681, 5, 0 )
-
-[node name="kerning_small_pipe_5" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4989, 5, 0 )
-
-[node name="kerning_small_pipe_6" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3174, 5, 0 )
-
-[node name="kerning_small_pipe_7" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 24.1481, 5, 0 )
-
-[node name="kerning_small_pipe_8" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.9855, 5, 0 )
-
-[node name="kerning_small_pipe_9" parent="Pipe Ladder" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.8163, 5, 0 )
-
-[node name="kerning_small_pipe_10" parent="Pipe Ladder" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, -8.35187e-23, 0, 1, 0, -8.35187e-23, 0, 1, 4.14856, 0.274838, 0 )
-
-[node name="kerning_small_pipe_11" parent="Pipe Ladder" instance=ExtResource( 6 )]
-transform = Transform( -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 10.1486, -2.72516, 0 )
-
-[node name="KerningPipeSideline" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.407, 0, 0, 7 )
-
-[node name="kerning_big_pipe_1" parent="." instance=ExtResource( 10 )]
-transform = Transform( -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -49, 9, 0 )
-
-[node name="kerning_big_pipe_2" parent="." instance=ExtResource( 10 )]
-transform = Transform( -2.18557e-07, -5, 0, 5, -2.18557e-07, 0, 0, 0, 5, -29, 41, -20 )
-
-[node name="kerning_big_pipe_3" parent="." instance=ExtResource( 10 )]
-transform = Transform( -2.18557e-07, -5, 0, -4.82963, 2.1111e-07, -1.2941, 1.2941, -5.65667e-08, -4.82963, -29, 41, -9 )
-
-[node name="kerning_big_pipe_4" parent="." instance=ExtResource( 10 )]
-transform = Transform( -2.18557e-07, -5, 0, -2.5, 1.09278e-07, -4.33013, 4.33013, -1.89276e-07, -2.5, -29, 49.4903, -14.6299 )
