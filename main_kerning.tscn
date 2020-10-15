@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Resources/Textures/bricks.png" type="Texture" id=1]
 [ext_resource path="res://Resources/3D Models/kerning_pipe.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Resources/Textures/KerningBricks2NormalMap.png" type="Texture" id=9]
 [ext_resource path="res://Resources/3D Models/kerning_big_pipe_1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/3D Models/kern_telephone_inherited.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Resources/3D Models/kern_build_naora.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Environment" id=1]
 ambient_light_color = Color( 0.301961, 0.313726, 0.576471, 1 )
@@ -41,7 +42,7 @@ extents = Vector3( 16, 0.5, 5.5 )
 
 [sub_resource type="CubeMesh" id=7]
 material = ExtResource( 7 )
-size = Vector3( 120, 1, 22 )
+size = Vector3( 120, 1, 48 )
 
 [sub_resource type="SpatialMaterial" id=8]
 albedo_texture = ExtResource( 1 )
@@ -119,7 +120,7 @@ shape = SubResource( 6 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 41, -13 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Geometry/Floor4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -2 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, -14 )
 mesh = SubResource( 7 )
 material/0 = ExtResource( 7 )
 
@@ -227,6 +228,9 @@ transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -9, 10, -3 )
 [node name="kerning_pipe3" parent="Objects" instance=ExtResource( 2 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 9, 10, -3 )
 
+[node name="kern_build_naora" parent="Objects" instance=ExtResource( 12 )]
+transform = Transform( -1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, -8, 35, -29 )
+
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 21.01, 24 )
+transform = Transform( 0.683936, 0.558861, -0.468941, 0, 0.642788, 0.766044, 0.729542, -0.523925, 0.439626, -52, 97.01, 24 )
 shadow_enabled = true

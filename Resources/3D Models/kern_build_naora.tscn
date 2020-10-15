@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Resources/3D Models/kerning_ladder_middle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/3D Models/kerning_ladder_start.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/GLTF Originals/kern_build_naora.gltf" type="PackedScene" id=3]
+[ext_resource path="res://PrefabScenes/KerningPipeHandrail.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/3D Models/kerning_small_pipe_1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/3D Models/kerning_small_pipe_2.tscn" type="PackedScene" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CubeMesh" id=2]
+material = SubResource( 1 )
+size = Vector3( 3, 3, 2 )
+
+[node name="kern_build_naora" type="Spatial"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+
+[node name="kern_build_naora" parent="." instance=ExtResource( 3 )]
+
+[node name="RestrictedSignLight" type="OmniLight" parent="."]
+transform = Transform( 0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 0.51161, 9.18688, 4.33333 )
+light_color = Color( 0.972549, 0.0980392, 0.0980392, 1 )
+light_energy = 2.89
+
+[node name="ExitSignLight" type="OmniLight" parent="."]
+transform = Transform( 0.333333, 0, 0, 0, 0.333333, 0, 0, 0, 0.333333, 1.84494, 4.18689, 4.33333 )
+light_color = Color( 0.741176, 0.898039, 0.972549, 1 )
+light_energy = 1.34
+
+[node name="Ladder" type="Spatial" parent="."]
+transform = Transform( -8.14603e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -8.14603e-08, -3.1518, 11.8996, -3.23796 )
+
+[node name="kerning_ladder_start" parent="Ladder" instance=ExtResource( 2 )]
+
+[node name="kerning_ladder_middle" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, 0.152412, -0.736139 )
+
+[node name="kerning_ladder_middle2" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, -1.0453, -0.736139 )
+
+[node name="kerning_ladder_middle3" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, -2.26343, -0.736139 )
+
+[node name="kerning_ladder_middle4" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, -3.4278, -0.736139 )
+
+[node name="kerning_ladder_middle5" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, -4.59579, -0.736139 )
+
+[node name="kerning_ladder_middle6" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -2.84217e-14, 0, 1, 0, 2.84217e-14, 0, 1, 0, -5.81017, -0.736139 )
+
+[node name="kerning_ladder_middle7" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -7.0453, -0.736139 )
+
+[node name="kerning_ladder_middle8" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -8.26343, -0.736139 )
+
+[node name="kerning_ladder_middle9" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -9.4278, -0.736139 )
+
+[node name="kerning_ladder_middle10" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -10.5958, -0.736139 )
+
+[node name="kerning_ladder_middle11" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -11.8102, -0.736139 )
+
+[node name="kerning_ladder_middle12" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -13.0443, -0.736139 )
+
+[node name="kerning_ladder_middle13" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -14.2123, -0.736139 )
+
+[node name="kerning_ladder_middle14" parent="Ladder" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, -15.4267, -0.736139 )
+
+[node name="BuildingInterior" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333333, 2.33333, 2.66667 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="UpperFloorHandrail1" parent="BuildingInterior" instance=ExtResource( 4 )]
+transform = Transform( 0, 0, -0.2, 0, 0.2, 0, 0.2, 0, 0, -1.33334, 9.33337, -3 )
+
+[node name="UpperFloorHandrail2" type="Spatial" parent="BuildingInterior"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333333, -2.33333, -2.66667 )
+
+[node name="kerning_small_pipe_1" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 5 )]
+transform = Transform( -1.62921e-08, 0.1, 0, -0.1, -1.62921e-08, 0, 0, 0, 0.1, 1.66667, 13.0103, 3.66667 )
+
+[node name="kerning_small_pipe_2" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 12.4955, 3.667 )
+
+[node name="kerning_small_pipe_3" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 12.1621, 3.667 )
+
+[node name="kerning_small_pipe_4" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 13.8288, 3.667 )
+
+[node name="kerning_small_pipe_5" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 13.4955, 3.667 )
+
+[node name="kerning_small_pipe_6" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 14.4955, 3.667 )
+
+[node name="kerning_small_pipe_7" parent="BuildingInterior/UpperFloorHandrail2" instance=ExtResource( 6 )]
+transform = Transform( -1.62921e-08, -0.1, 0, 0.1, -1.62921e-08, 0, 0, 0, 0.1, 2.40115, 14.1621, 3.667 )
+
+[editable path="kern_build_naora"]
