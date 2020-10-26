@@ -27,21 +27,17 @@ func _physics_process(delta):
 		linear_velocity.y - GRAV_ACCEL*delta,
 		0
 	)
-	
 	move_and_slide( linear_velocity )
-	if( abs(linear_velocity.y)>0.1 ):
-		on_floor = false
-		for i in range(0,get_slide_count()):
-			var col = get_slide_collision(i)
-			if col.normal.normalized().y > 0:
-				on_floor = true
-				linear_velocity.y = 0
-				if character_state == CHARACTER_STATE.ON_AIR:
-					setCharacterState(CHARACTER_STATE.IDLE)
-				break
+	
+	for i in range(0,get_slide_count()):
+		var col = get_slide_collision(i)
+		if col.normal.normalized().y > 0.1 :
+			linear_velocity.y = 0
+			if character_state == CHARACTER_STATE.ON_AIR:
+				setCharacterState(CHARACTER_STATE.IDLE)
 
 func jump():
-	if on_floor:
+	if linear_velocity.y <= 0 and test_move(transform,Vector3(0,-0.3,0)) :
 		linear_velocity.y = 30
 		setCharacterState(CHARACTER_STATE.ON_AIR)
 
