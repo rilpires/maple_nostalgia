@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/character_template.gltf-10fa4a8efed84fec20fbea969af9652e.scn"
+path="res://.import/block_golem.gltf-fd9fbf1809e67fc20928c2c27716b348.scn"
 
 [deps]
 
-source_file="res://Resources/GLTF Originals/character_template.gltf"
-dest_files=[ "res://.import/character_template.gltf-10fa4a8efed84fec20fbea969af9652e.scn" ]
+source_file="res://Resources/GLTF Originals/block_golem/block_golem.gltf"
+dest_files=[ "res://.import/block_golem.gltf-fd9fbf1809e67fc20928c2c27716b348.scn" ]
 
 [params]
 
@@ -29,8 +29,8 @@ external_files/store_in_subdir=false
 animation/import=true
 animation/fps=15
 animation/filter_script=""
-animation/storage=false
-animation/keep_custom_tracks=false
+animation/storage=1
+animation/keep_custom_tracks=true
 animation/optimizer/enabled=true
 animation/optimizer/max_linear_error=0.05
 animation/optimizer/max_angular_error=0.01

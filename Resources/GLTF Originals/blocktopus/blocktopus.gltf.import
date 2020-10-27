@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/blocktopus.gltf-c5fd1418b191191465d2d23491f265e0.scn"
+path="res://.import/blocktopus.gltf-7c1618d52a25aaa65ba679586168254c.scn"
 
 [deps]
 
-source_file="res://Resources/GLTF Originals/blocktopus.gltf"
-dest_files=[ "res://.import/blocktopus.gltf-c5fd1418b191191465d2d23491f265e0.scn" ]
+source_file="res://Resources/GLTF Originals/blocktopus/blocktopus.gltf"
+dest_files=[ "res://.import/blocktopus.gltf-7c1618d52a25aaa65ba679586168254c.scn" ]
 
 [params]
 
@@ -29,8 +29,8 @@ external_files/store_in_subdir=false
 animation/import=true
 animation/fps=15
 animation/filter_script=""
-animation/storage=false
-animation/keep_custom_tracks=false
+animation/storage=1
+animation/keep_custom_tracks=true
 animation/optimizer/enabled=true
 animation/optimizer/max_linear_error=0.05
 animation/optimizer/max_angular_error=0.01
