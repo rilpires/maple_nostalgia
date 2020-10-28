@@ -1,4 +1,5 @@
 # No 'player controller' scripts here, but generic stuff for any characters!
+class_name Character
 extends KinematicBody
 
 enum CHARACTER_STATE { 
@@ -9,6 +10,7 @@ enum CHARACTER_STATE {
 }
 const GRAV_ACCEL = 100
 
+# Controllers/Behaviors should be accessing and modifying these variables:
 export (String) var character_name = 'Character'
 export (float) var horizontal_speed = 20.0; # Final induced horizontal speed will be multiplied by input_direction.x
 export (float) var vertical_speed = 10.0; # Final induced vertical speed will be multiplied by input_direction.x
@@ -16,7 +18,11 @@ export (Vector2) var input_direction = Vector2(0,0) setget setInputDirection
 var character_state = CHARACTER_STATE.IDLE setget setCharacterState
 var linear_velocity = Vector2(0,0) # linear_velocity could contain input_direction, gravity, knockback , etc...
 
+# Don't touch these variables from outside!
+onready var model_anim_player = $model_root.find_node('AnimationPlayer')
+
 func _ready():
+	move_lock_z = true
 	_enteredState(character_state)
 
 func _physics_process(delta):
@@ -56,7 +62,7 @@ func setInputDirection(new_dir):
 	input_direction = new_dir
 	if( input_direction.x != 0 ):
 		# Only rotating it's geometry, not CollisionShape and other stuffs
-		$character_template.rotation_degrees.y = -45 + 90*int(input_direction.x>0)
+		$model_root.rotation_degrees.y = -45 + 90*int(input_direction.x>0)
 	if( input_direction.length_squared() > 1 ):
 		input_direction = input_direction.normalized()
 
@@ -69,11 +75,11 @@ func setCharacterState(new_state):
 func _enteredState(state):
 	match state:
 		CHARACTER_STATE.IDLE:
-			$character_template/AnimationPlayer.play("Idle")
+			model_anim_player.play("Standing")
 		CHARACTER_STATE.WALKING:
-			$character_template/AnimationPlayer.play("Walking")
+			model_anim_player.play("Walking")
 		CHARACTER_STATE.ON_AIR:
-			$character_template/AnimationPlayer.play("Jumping")
+			model_anim_player.play("Jumping")
 
 func _exitedState(state):
 	pass

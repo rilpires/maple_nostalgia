@@ -1,5 +1,6 @@
 extends Node
 
+onready var character:Character = get_parent()
 
 func _physics_process(delta):
 	pass
@@ -7,8 +8,6 @@ func _physics_process(delta):
 	
 	
 func _input(event):
-	var character = get_parent()
-	
 	if event.is_action("jump") and event.is_pressed():
 		character.jump()
 	
