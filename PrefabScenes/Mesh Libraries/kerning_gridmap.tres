@@ -1,8 +1,8 @@
 [gd_resource type="MeshLibrary" load_steps=25 format=2]
 
-[ext_resource path="res://Resources/GLTF Originals/Material_001.material" type="Material" id=1]
-[ext_resource path="res://Resources/GLTF Originals/Material.material" type="Material" id=2]
-[ext_resource path="res://Resources/GLTF Originals/Material_006.material" type="Material" id=3]
+[ext_resource path="res://Resources/GLTF/Material_001.material" type="Material" id=1]
+[ext_resource path="res://Resources/GLTF/Material.material" type="Material" id=2]
+[ext_resource path="res://Resources/GLTF/Material_006.material" type="Material" id=3]
 [ext_resource path="res://Resources/Textures/KerningBricks2NormalMap.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Textures/bricks.png" type="Texture" id=5]
 

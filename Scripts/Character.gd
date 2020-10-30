@@ -62,7 +62,7 @@ func setInputDirection(new_dir):
 	input_direction = new_dir
 	if( input_direction.x != 0 ):
 		# Only rotating it's geometry, not CollisionShape and other stuffs
-		$model_root.rotation_degrees.y = -45 + 90*int(input_direction.x>0)
+		$model_root.rotation_degrees.y = -35 + 70*int(input_direction.x>0)
 	if( input_direction.length_squared() > 1 ):
 		input_direction = input_direction.normalized()
 
@@ -79,7 +79,9 @@ func _enteredState(state):
 		CHARACTER_STATE.WALKING:
 			model_anim_player.play("Walking")
 		CHARACTER_STATE.ON_AIR:
-			model_anim_player.play("Jumping")
-
+			if model_anim_player.has_animation("Jumping"):
+				model_anim_player.play("Jumping")
+			else:
+				model_anim_player.play("Standing")
 func _exitedState(state):
 	pass

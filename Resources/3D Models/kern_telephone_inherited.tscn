@@ -3,7 +3,8 @@
 [ext_resource path="res://Resources/Materials/m_kern_booth_wdw.material" type="Material" id=1]
 [ext_resource path="res://Resources/Materials/m_kern_booth_phone.material" type="Material" id=2]
 [ext_resource path="res://Resources/Materials/m_kern_booth.material" type="Material" id=3]
-[ext_resource path="res://Resources/GLTF Originals/kern_telephone.gltf" type="PackedScene" id=4]
+[ext_resource path="res://Resources/GLTF/kern_telephone.gltf" type="PackedScene" id=4]
+
 
 [node name="kern_telephone" instance=ExtResource( 4 )]
 transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -2, 0 )

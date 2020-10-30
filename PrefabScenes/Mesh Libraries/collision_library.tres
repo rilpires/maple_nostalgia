@@ -1,6 +1,6 @@
 [gd_resource type="MeshLibrary" load_steps=14 format=2]
 
-[ext_resource path="res://Resources/GLTF Originals/Material.material" type="Material" id=1]
+[ext_resource path="res://Resources/GLTF/Material.material" type="Material" id=1]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 3.99, 3.99, 3.99 )

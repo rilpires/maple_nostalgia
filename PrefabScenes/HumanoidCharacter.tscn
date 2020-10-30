@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Resources/GLTF Originals/character_template/character_template.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Resources/GLTF/character_template/character_template.gltf" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=2]
+[ext_resource path="res://Resources/GLTF/magician_hat/magician_hat.gltf" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.25
 height = 1.5
 
 [node name="HumanoidCharacter" type="KinematicBody"]
+transform = Transform( 1.05343, 0, 0, 0, 1.05343, 0, 0, 0, 1.05343, 0, 0, 0 )
 input_ray_pickable = false
 collision_mask = 1024
 script = ExtResource( 2 )
@@ -17,6 +19,19 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.00
 shape = SubResource( 1 )
 
 [node name="model_root" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.395552, 0, 0, 0, 0.395552, 0, 0, 0, 0.395552, 0, 0, 0 )
+transform = Transform( 0.943551, 0, 0, 0, 0.943551, 0, 0, 0, 0.943551, 0, 0, 0 )
+
+[node name="Skeleton" parent="model_root/Armature" index="0"]
+bones/3/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="1"]
+transform = Transform( 0.999999, -0.000284068, 0.00156477, 0.000246073, 0.999706, 0.0242285, -0.00157119, -0.0242281, 0.999705, -0.000440391, 1.75658, -0.0120446 )
+bone_name = "hat"
+
+[node name="model_root2" parent="model_root/Armature/Skeleton/BoneAttachment" instance=ExtResource( 3 )]
+transform = Transform( 0.823517, 0.000554409, -0.00640573, -0.000895125, 0.822372, -0.0439016, 0.00636706, 0.0439072, 0.822347, 0.012817, -0.102612, 0.0744473 )
+
+[node name="AnimationPlayer" parent="model_root" index="1"]
+blend_times = [ "Jumping", "Walking", 0.21, "Walking", "Jumping", 0.05 ]
 
 [editable path="model_root"]

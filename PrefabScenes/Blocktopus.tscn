@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Resources/GLTF Originals/blocktopus/blocktopus.gltf" type="PackedScene" id=1]
+[ext_resource path="res://Resources/GLTF/blocktopus/blocktopus.gltf" type="PackedScene" id=1]
 [ext_resource path="res://PrefabScenes/MonsterTemplate.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
@@ -18,3 +18,8 @@ shape = SubResource( 1 )
 
 [node name="model_root" parent="." index="2" instance=ExtResource( 1 )]
 transform = Transform( 0.302047, 0, 0, 0, 0.302047, 0, 0, 0, 0.302047, 0, 0, 0 )
+
+[node name="AnimationPlayer" parent="model_root" index="1"]
+blend_times = [ "Standing", "Walking", 0.2, "Walking", "Standing", 0.2 ]
+
+[editable path="model_root"]
