@@ -19,4 +19,7 @@ shape = SubResource( 1 )
 script = ExtResource( 1 )
 
 [node name="Timer" type="Timer" parent="Behavior"]
+
+[node name="KnockbackTimer" type="Timer" parent="."]
 [connection signal="timeout" from="Behavior/Timer" to="Behavior" method="_on_Timer_timeout"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="setCharacterState" binds= [ 0 ]]

@@ -6,8 +6,11 @@ enum CHARACTER_STATE {
 	IDLE , 
 	WALKING , 
 	ON_AIR ,
+	ACTION ,
+	DISABLED ,
 	LADDER # soon!
 }
+signal triggering_action
 const GRAV_ACCEL = 100
 
 # Controllers/Behaviors should be accessing and modifying these variables:
@@ -27,12 +30,19 @@ func _ready():
 
 func _physics_process(delta):
 	
-	linear_velocity = Vector3(
-		horizontal_speed * input_direction.x ,
-		linear_velocity.y - GRAV_ACCEL*delta,
-		0
-	)
-	move_and_slide( linear_velocity )
+	var target_x_linear_velocity = 0
+	if not is_on_floor():
+		target_x_linear_velocity = linear_velocity.x
+	if ( is_on_floor() 
+	and character_state != CHARACTER_STATE.ACTION
+	and character_state != CHARACTER_STATE.DISABLED):
+		target_x_linear_velocity = input_direction.x * horizontal_speed
+
+	linear_velocity.x = lerp( linear_velocity.x , target_x_linear_velocity , 0.8)
+	linear_velocity.x = clamp(linear_velocity.x , -horizontal_speed , horizontal_speed )
+	linear_velocity.y -= GRAV_ACCEL*delta
+	
+	move_and_slide( Vector3(linear_velocity.x,linear_velocity.y,0) )
 	
 	for i in range(0,get_slide_count()):
 		var col = get_slide_collision(i)
@@ -42,25 +52,33 @@ func _physics_process(delta):
 	avaliateCharacterState()
 
 func avaliateCharacterState():
-	if is_on_floor() and linear_velocity.y<0.1 :
-		if linear_velocity.x * input_direction.x > 0 :
-			setCharacterState(CHARACTER_STATE.WALKING)
+	
+	if (character_state != CHARACTER_STATE.ACTION 
+	and character_state != CHARACTER_STATE.DISABLED ):
+		if is_on_floor() and linear_velocity.y<0.1 :
+			if linear_velocity.x * input_direction.x > 0 :
+				setCharacterState(CHARACTER_STATE.WALKING)
+			else:
+				setCharacterState(CHARACTER_STATE.IDLE)
 		else:
-			setCharacterState(CHARACTER_STATE.IDLE)
-	else:
-		setCharacterState(CHARACTER_STATE.ON_AIR)
+			setCharacterState(CHARACTER_STATE.ON_AIR)
 
 func is_on_floor() -> bool :
 	return test_move(transform,Vector3(0,-0.3,0))
 
 func jump():
-	if linear_velocity.y <= 0 and is_on_floor() :
+	if linear_velocity.y <= 0 and character_state != CHARACTER_STATE.ACTION and is_on_floor() :
 		linear_velocity.y = 30
 		setCharacterState(CHARACTER_STATE.ON_AIR)
 
+func action(action_name):
+	if character_state != CHARACTER_STATE.ACTION:
+		setCharacterState(CHARACTER_STATE.ACTION)
+		emit_signal("triggering_action" , action_name)
+
 func setInputDirection(new_dir):
 	input_direction = new_dir
-	if( input_direction.x != 0 ):
+	if input_direction.x != 0 and character_state != CHARACTER_STATE.ACTION:
 		# Only rotating it's geometry, not CollisionShape and other stuffs
 		$model_root.rotation_degrees.y = -35 + 70*int(input_direction.x>0)
 	if( input_direction.length_squared() > 1 ):
@@ -72,16 +90,32 @@ func setCharacterState(new_state):
 		character_state = new_state
 		_enteredState(character_state)
 
+
+func _getAnimationSuffix():
+	return ""
 func _enteredState(state):
 	match state:
 		CHARACTER_STATE.IDLE:
-			model_anim_player.play("Standing")
+			_play( "Standing" )
 		CHARACTER_STATE.WALKING:
-			model_anim_player.play("Walking")
+			_play( "Walking" )
 		CHARACTER_STATE.ON_AIR:
-			if model_anim_player.has_animation("Jumping"):
-				model_anim_player.play("Jumping")
-			else:
-				model_anim_player.play("Standing")
+			_play(["Jumping","Standing"])
 func _exitedState(state):
 	pass
+
+# just play an animation, will play the first available animation.
+# Also, will try the animation with suffix from "_getAnimationSuffix" if it exists
+func _play( anims_names ):
+	if anims_names is String: 
+		anims_names = [anims_names]
+	for anim_name in anims_names:
+		var anim_name_suffix = _getAnimationSuffix()
+		var anim_name_suffixed = anim_name + anim_name_suffix
+		if model_anim_player.has_animation(anim_name_suffixed):
+			model_anim_player.play(anim_name_suffixed)
+			return true
+		if model_anim_player.has_animation(anim_name):
+			model_anim_player.play(anim_name)
+			return true
+	return false

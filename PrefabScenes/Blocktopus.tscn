@@ -9,6 +9,7 @@ height = 0.755095
 
 [node name="Blocktopus" instance=ExtResource( 2 )]
 input_ray_pickable = false
+collision_layer = 2
 horizontal_speed = 12.0
 vertical_speed = 6.0
 

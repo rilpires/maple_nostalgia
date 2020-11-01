@@ -8,6 +8,7 @@ radius = 0.569143
 height = 2.64535
 
 [node name="BlockGolem" instance=ExtResource( 1 )]
+collision_layer = 2147483650
 horizontal_speed = 9.0
 vertical_speed = 5.0
 
@@ -19,5 +20,8 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" parent="model_root" index="1"]
 blend_times = [ "Standing", "Walking", 0.2, "Walking", "Standing", 0.2 ]
+
+[node name="KnockbackTimer" parent="." index="3"]
+wait_time = 1.2
 
 [editable path="model_root"]

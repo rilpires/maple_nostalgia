@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/GLTF/character_template/character_template.gltf" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/Character.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/HumanoidScript.gd" type="Script" id=2]
 [ext_resource path="res://Resources/GLTF/magician_hat/magician_hat.gltf" type="PackedScene" id=3]
+[ext_resource path="res://Resources/GLTF/polearms/polearm_000.gltf" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.25
 height = 1.5
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1.86734, 2.40668, 1.66797 )
 
 [node name="HumanoidCharacter" type="KinematicBody"]
 transform = Transform( 1.05343, 0, 0, 0, 1.05343, 0, 0, 0, 1.05343, 0, 0, 0 )
@@ -19,19 +23,37 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.00
 shape = SubResource( 1 )
 
 [node name="model_root" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.643631, 0, 0, 0, 0.643631, 0, 0, 0, 0.643631, 0, 0, 0 )
-
-[node name="Skeleton" parent="model_root/Armature" index="0"]
-bones/2/bound_children = [ NodePath("HatBone") ]
+transform = Transform( 0.574731, 0, 0.331821, 0, 0.663642, 0, -0.331821, 0, 0.574731, 0, 0, 0 )
 
 [node name="HatBone" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="1"]
-transform = Transform( 1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 1.64059, -1.22775e-08 )
+transform = Transform( 0.959035, -0.274892, 0.0684487, 0.281473, 0.951957, -0.120631, -0.0319998, 0.134955, 0.990335, -0.00319953, 1.63986, -0.111117 )
 bone_name = "head"
 
 [node name="model_root2" parent="model_root/Armature/Skeleton/HatBone" instance=ExtResource( 3 )]
 transform = Transform( 1.12158, 0.000755072, -0.00872422, -0.00121911, 1.12002, -0.0597914, 0.00867155, 0.059799, 1.11999, 0.0131039, 1.06313, 0.1027 )
 
+[node name="_2H_spear" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="2"]
+transform = Transform( 0.809388, 0.542718, -0.224387, -0.584644, 0.780752, -0.220493, 0.0555246, 0.309651, 0.949228, 0.578921, 1.83346, 0.439166 )
+bone_name = "spear"
+
+[node name="model_root" parent="model_root/Armature/Skeleton/_2H_spear" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.614, 0 )
+
 [node name="AnimationPlayer" parent="model_root" index="1"]
+playback_process_mode = 0
 blend_times = [ "Jumping", "Standing", 0.05, "Jumping", "Standing_2H_spear", 0.05, "Jumping", "Walking", 0.05, "Walking", "Jumping", 0.02 ]
+
+[node name="hitbox_Attacking_2H_spear" type="Area" parent="model_root"]
+transform = Transform( 0.866025, 0, -0.5, 0, 0.999999, 0, 0.5, 0, 0.866025, 1.514, 2.192, 0.874 )
+visible = false
+input_ray_pickable = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="model_root/hitbox_Attacking_2H_spear"]
+shape = SubResource( 3 )
+[connection signal="triggering_action" from="." to="." method="_on_triggering_action"]
+[connection signal="animation_finished" from="model_root/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
 [editable path="model_root"]
