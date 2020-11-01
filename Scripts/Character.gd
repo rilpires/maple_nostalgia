@@ -119,3 +119,15 @@ func _play( anims_names ):
 			model_anim_player.play(anim_name)
 			return true
 	return false
+
+func _blink( ):
+	var skeleton = find_node("Skeleton")
+	var blink_timer = Timer.new()
+	blink_timer.wait_time = 0.05 
+	add_child(blink_timer)
+	blink_timer.start()
+	for mesh_instance in skeleton.get_children():
+		for material_id in range(0,mesh_instance.get_surface_material_count()):
+			mesh_instance.set_surface_material(material_id, preload("res://Resources/Materials/DamageBlink.tres") )
+			blink_timer.connect("timeout",mesh_instance,"set_surface_material",[material_id,null])
+	blink_timer.connect("timeout",blink_timer,"queue_free")

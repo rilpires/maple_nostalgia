@@ -46,6 +46,7 @@ func _on_hitbox_colliding_enemy( enemy ):
 	enemy.find_node('KnockbackTimer').start()
 	enemy.setCharacterState(CHARACTER_STATE.DISABLED)
 	enemy._play("Knockbacked")
+	enemy._blink()
 	
 
 func _spawn_hitbox( hitbox_area_name ):

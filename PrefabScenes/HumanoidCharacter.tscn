@@ -26,14 +26,14 @@ shape = SubResource( 1 )
 transform = Transform( 0.574731, 0, 0.331821, 0, 0.663642, 0, -0.331821, 0, 0.574731, 0, 0, 0 )
 
 [node name="HatBone" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="1"]
-transform = Transform( 0.959035, -0.274892, 0.0684487, 0.281473, 0.951957, -0.120631, -0.0319998, 0.134955, 0.990335, -0.00319953, 1.63986, -0.111117 )
+transform = Transform( 0.94976, -0.304337, 0.0730376, 0.310662, 0.945042, -0.101908, -0.0380091, 0.119478, 0.992109, 0.000934254, 1.70151, -0.112578 )
 bone_name = "head"
 
 [node name="model_root2" parent="model_root/Armature/Skeleton/HatBone" instance=ExtResource( 3 )]
 transform = Transform( 1.12158, 0.000755072, -0.00872422, -0.00121911, 1.12002, -0.0597914, 0.00867155, 0.059799, 1.11999, 0.0131039, 1.06313, 0.1027 )
 
 [node name="_2H_spear" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="2"]
-transform = Transform( 0.809388, 0.542718, -0.224387, -0.584644, 0.780752, -0.220493, 0.0555246, 0.309651, 0.949228, 0.578921, 1.83346, 0.439166 )
+transform = Transform( 0.812544, 0.582899, 0.000986613, -0.578019, 0.80552, 0.130501, 0.0752745, -0.106608, 0.991448, 0.545978, 1.82319, 0.286315 )
 bone_name = "spear"
 
 [node name="model_root" parent="model_root/Armature/Skeleton/_2H_spear" instance=ExtResource( 4 )]
