@@ -2,7 +2,7 @@
 A "2.5D" old Maple Story prototype using Godot (v3.2.3)
 
 
-[<img src="https://i.imgur.com/W8adRqc.png">]
+<img src="https://i.imgur.com/W8adRqc.png">
 
 This project was more "Searching-for-3D-best-pratices-using-Godot-engine" than anything.
 The idea came off when a friend of mine [@vgarciasc](https://github.com/vgarciasc) was praticing 3D for the first time on Blender.
