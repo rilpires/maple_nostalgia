@@ -26,6 +26,7 @@ onready var model_anim_player = $model_root.find_node('AnimationPlayer')
 
 func _ready():
 	move_lock_z = true
+	$model_root/Armature.rotation_degrees.y = -30 # "Fake" side
 	_enteredState(character_state)
 
 func _physics_process(delta):
@@ -80,7 +81,7 @@ func setInputDirection(new_dir):
 	input_direction = new_dir
 	if input_direction.x != 0 and character_state != CHARACTER_STATE.ACTION:
 		# Only rotating it's geometry, not CollisionShape and other stuffs
-		$model_root.rotation_degrees.y = -35 + 70*int(input_direction.x>0)
+		$model_root.scale.x = -abs($model_root.scale.x) if input_direction.x>0 else abs($model_root.scale.x)
 	if( input_direction.length_squared() > 1 ):
 		input_direction = input_direction.normalized()
 

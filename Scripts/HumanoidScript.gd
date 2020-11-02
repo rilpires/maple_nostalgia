@@ -56,11 +56,6 @@ func _spawn_hitbox( hitbox_area_name ):
 	$model_root.add_child( hitbox_instance )
 	hitbox_instance.connect("body_entered",self,"_on_hitbox_colliding_enemy")
 	
-	# Gotta keep with this fake 'side' (model root rotates 60degrees between left and right instead 180)  
-	var character_facing_direction = 1 if $model_root.rotation_degrees.y>0 else -1
-	hitbox_instance.translation.x *= character_facing_direction
-	hitbox_instance.rotation_degrees.y = -$model_root.rotation_degrees.y
-	
 	hitbox_lifetimer.wait_time = 0.1
 	hitbox_lifetimer.start()
 	hitbox_lifetimer.connect("timeout",hitbox_instance,"queue_free")

@@ -640,7 +640,7 @@
                 30,
                 29
             ],
-            "name" : "BodyArmature"
+            "name" : "Armature"
         }
     ],
     "animations" : [
@@ -4995,17 +4995,8 @@
     ],
     "materials" : [
         {
-            "doubleSided" : true,
-            "emissiveFactor" : [
-                0,
-                0,
-                0
-            ],
-            "name" : "Material",
-            "pbrMetallicRoughness" : {
-                "metallicFactor" : 0,
-                "roughnessFactor" : 0.4000000059604645
-            }
+            "name" : "block_golem_material",
+            "pbrMetallicRoughness" : {}
         }
     ],
     "meshes" : [
@@ -5062,7 +5053,7 @@
                 25,
                 24
             ],
-            "name" : "BodyArmature"
+            "name" : "Armature"
         }
     ],
     "accessors" : [

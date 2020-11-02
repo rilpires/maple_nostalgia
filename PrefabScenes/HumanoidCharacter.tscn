@@ -9,8 +9,8 @@
 radius = 0.25
 height = 1.5
 
-[sub_resource type="BoxShape" id=3]
-extents = Vector3( 1.86734, 2.40668, 1.66797 )
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.27044, 2.40668, 1.66797 )
 
 [node name="HumanoidCharacter" type="KinematicBody"]
 transform = Transform( 1.05343, 0, 0, 0, 1.05343, 0, 0, 0, 1.05343, 0, 0, 0 )
@@ -23,18 +23,21 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.00
 shape = SubResource( 1 )
 
 [node name="model_root" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.574731, 0, 0.331821, 0, 0.663642, 0, -0.331821, 0, 0.574731, 0, 0, 0 )
+transform = Transform( 0.664, 0, 0, 0, 0.664, 0, 0, 0, 0.664, 0, 0, 0 )
+
+[node name="Armature" parent="model_root" index="0"]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0, 0, 0 )
 
 [node name="HatBone" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="1"]
-transform = Transform( 0.94976, -0.304337, 0.0730376, 0.310662, 0.945042, -0.101908, -0.0380091, 0.119478, 0.992109, 0.000934254, 1.70151, -0.112578 )
+transform = Transform( 0.91498, -0.117067, -0.386144, 0.0410899, 0.979045, -0.199454, 0.401402, 0.16663, 0.900617, -0.022032, 1.21472, 0.127732 )
 bone_name = "head"
 
 [node name="model_root2" parent="model_root/Armature/Skeleton/HatBone" instance=ExtResource( 3 )]
 transform = Transform( 1.12158, 0.000755072, -0.00872422, -0.00121911, 1.12002, -0.0597914, 0.00867155, 0.059799, 1.11999, 0.0131039, 1.06313, 0.1027 )
 
 [node name="_2H_spear" type="BoneAttachment" parent="model_root/Armature/Skeleton" index="2"]
-transform = Transform( 0.812544, 0.582899, 0.000986613, -0.578019, 0.80552, 0.130501, 0.0752745, -0.106608, 0.991448, 0.545978, 1.82319, 0.286315 )
-bone_name = "spear"
+transform = Transform( 0.742144, -0.666467, 0.0710298, 0.114139, 0.0212442, -0.993238, 0.660451, 0.745232, 0.0918366, -0.525136, 0.759561, 1.7762 )
+bone_name = "weapon"
 
 [node name="model_root" parent="model_root/Armature/Skeleton/_2H_spear" instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.614, 0 )
@@ -44,15 +47,14 @@ playback_process_mode = 0
 blend_times = [ "Jumping", "Standing", 0.05, "Jumping", "Standing_2H_spear", 0.05, "Jumping", "Walking", 0.05, "Walking", "Jumping", 0.02 ]
 
 [node name="hitbox_Attacking_2H_spear" type="Area" parent="model_root"]
-transform = Transform( 0.866025, 0, -0.5, 0, 0.999999, 0, 0.5, 0, 0.866025, 1.514, 2.192, 0.874 )
-visible = false
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -2.37169, 2.21839, 0.874 )
 input_ray_pickable = false
 monitorable = false
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="model_root/hitbox_Attacking_2H_spear"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 [connection signal="triggering_action" from="." to="." method="_on_triggering_action"]
 [connection signal="animation_finished" from="model_root/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
